@@ -12,6 +12,7 @@ import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -19,6 +20,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -33,7 +36,7 @@ public class Principal extends javax.swing.JFrame {
         initComponents();
         //setExtendedState(MAXIMIZED_BOTH);
         atalhoTeclado();
-        GerarCodigo();
+        carregarTexto();
     }
 
     /**
@@ -45,21 +48,56 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane2 = new javax.swing.JScrollPane();
+        Texto = new javax.swing.JTextArea();
+        Gerar = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        Texto.setColumns(20);
+        Texto.setRows(5);
+        jScrollPane2.setViewportView(Texto);
+
+        Gerar.setText("Gerar");
+        Gerar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GerarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Gerar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(136, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(Gerar)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void GerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GerarActionPerformed
+        try {
+            GerarCodigo();
+        } catch (IOException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_GerarActionPerformed
 
     private void sair(){
         System.exit(0);
@@ -80,13 +118,34 @@ public class Principal extends javax.swing.JFrame {
         });
     }
     
-    public void GerarCodigo() throws IOException {
-        List<Modelo> modelos = new ArrayList<>();
-        Map<String, String> atributos = new HashMap<String, String>();
-
+    private void carregarTexto() throws FileNotFoundException, IOException{
+                
         FileReader arquivo = new FileReader(new File("mapa.txt"));
         BufferedReader ler_arquivo = new BufferedReader(arquivo);
         String linha = ler_arquivo.readLine();
+        
+        while(linha != null) 
+        {
+            Texto.setText( Texto.getText() + "\n" + linha);
+            linha = ler_arquivo.readLine();
+        }
+        ler_arquivo.close();
+    }
+    
+    private void novoDiretorio(String caminho) {
+        File diretorio = new File(caminho);
+        diretorio.mkdir();
+    }
+    
+    public void GerarCodigo() throws IOException {
+        
+        List<Modelo> modelos = new ArrayList<>();
+        Map<String, String> atributos = new HashMap<String, String>();
+        
+        FileReader arquivo = new FileReader(new File("mapa.txt"));
+        BufferedReader ler_arquivo = new BufferedReader(arquivo);
+        String linha = ler_arquivo.readLine();
+
         Modelo modelo = null;
         while(linha != null) 
         {
@@ -118,5 +177,8 @@ public class Principal extends javax.swing.JFrame {
         //gerarDependencias(modelos);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Gerar;
+    private javax.swing.JTextArea Texto;
+    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }
