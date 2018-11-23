@@ -1,0 +1,13 @@
+{
+cliente
+[
+Integer:id
+String:descricao
+(Classe):classe
+----------
+{
+classe
+[
+Integer:id
+String:memoria
+String:artigo
