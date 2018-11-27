@@ -658,5 +658,7 @@ novaLinha.write("}");
 
   json_obj = JSON.parse(this.response);*/
 
+https://www.youtube.com/watch?v=yWs2xceNCh0
+
 //ionic cordova plugin add cordova-sqlite-storage
 //npm install --save @ionic-native/sqlite
