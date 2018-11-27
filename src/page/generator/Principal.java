@@ -647,6 +647,16 @@ novaLinha.write("}");
 }
 
 
+ /* mensagens = [
+    {id: '1', categoria: 'GRAÇA', titulo: "A ultima palavra vem de Deus", img:'img/capa01.jpg', audio:"vh4-prod.mp3", descricao: 'Lorem impsu dollor Lorem impsu dollor Lorem impsu dollor Lorem impsu dollor Lorem impsu dollor Lorem impsu dollor '},
+    {id: '2', categoria: 'GRAÇA', titulo: 'Justiça de Deus', img:'img/capa01.jpg', audio:"dvh4-prod.mp3", descricao: 'Lorem impsu dollor Lorem impsu dollor Lorem impsu dollor Lorem impsu dollor Lorem impsu dollor Lorem impsu dollor '},
+    {id: '3', categoria: 'GRAÇA', titulo: 'Deus corrige a quem ama', img:'img/capa01.jpg', audio:"dvh4-prod.mp3", descricao: 'Lorem impsu dollor Lorem impsu dollor Lorem impsu dollor Lorem impsu dollor Lorem impsu dollor Lorem impsu dollor '}
+  ];
+
+  response = '[{"Language":"jQuery","ID":"1"},{"Language":"C#","ID":"2"},{"Language":"PHP","ID":"3"},{"Language":"Java","ID":"4"}, {"Language":"Python","ID":"5"},{"Language":"Perl","ID":"6"}, {"Language":"C++","ID":"7"},{"Language":"ASP","ID":"8"}, {"Language":"Ruby","ID":"9"}]';
+
+
+  json_obj = JSON.parse(this.response);*/
 
 //ionic cordova plugin add cordova-sqlite-storage
 //npm install --save @ionic-native/sqlite
